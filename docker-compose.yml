@@ -1,0 +1,27 @@
+services:
+  triton:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: triton_llm
+    runtime: nvidia 
+    shm_size: '2g'
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=1
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - HF_TOKEN=${HF_TOKEN}
+    ports:
+      - "7000:7000" 
+      - "7001:7001" 
+      - "7002:7002" 
+    volumes:
+      - ./model_repository:/models
+      - ./hf_cache:/models/hf
+    command: >
+      tritonserver
+      --model-repository=/models
+      --http-port=7000
+      --grpc-port=7001
+      --metrics-port=7002
+      --model-control-mode=poll
+      --log-verbose=0
