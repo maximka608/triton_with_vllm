@@ -1,6 +1,6 @@
 {
     "model":"meta-llama/Meta-Llama-3-8B-Instruct",
-    "gpu_memory_utilization": 0.25,
+    "gpu_memory_utilization": 0.35,
     "tensor_parallel_size": 1,
     "trust_remote_code": true,
     "enforce_eager": false,
