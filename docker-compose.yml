@@ -16,7 +16,7 @@ services:
       - "7002:7002" 
     volumes:
       - ./model_repository:/models
-      - ./hf_cache:/models/hf
+      - ./hf_cache:/hf_cache
     command: >
       tritonserver
       --model-repository=/models
